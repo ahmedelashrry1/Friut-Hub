@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:project/splachscreen/widgets/custom_splach_screen.dart';
+import 'package:project/SplachScreen/widgets/custom_splach_screen.dart';
 
 class SplachScreen extends StatelessWidget {
   const SplachScreen({super.key});

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:project/core/generate_route.dart';
-import 'package:project/splachscreen/SplachScreen.dart';
+import 'package:project/SplachScreen/SplachScreen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       initialRoute: SplachScreen.routeName,
       onGenerateRoute: onGenerateRoute,
-      
+
     );
   }
 }
