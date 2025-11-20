@@ -19,7 +19,7 @@ class _SplashViewBodyState extends State<SplashViewBody> {
   }
 
   void excutNavigation() {
-    Future.delayed(const Duration(seconds: 3), () {
+    Future.delayed(const Duration(seconds: 6), () {
       Navigator.pushReplacementNamed(context, OnBordingScreen.routeName );
     });
   }
@@ -33,7 +33,7 @@ class _SplashViewBodyState extends State<SplashViewBody> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Row(
-              mainAxisAlignment: MainAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 SvgPicture.asset('assets/image/plant.svg')
               ],
