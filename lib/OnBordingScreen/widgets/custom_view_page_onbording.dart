@@ -1,110 +1,91 @@
+// lib/features/onboarding/presentation/widgets/view_page_onboarding.dart
+
 import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:project/utils/app%20color.dart';
 
-class ViewPageOnBording extends StatelessWidget {
-  const ViewPageOnBording({
+class ViewPageOnboarding extends StatelessWidget {
+  const ViewPageOnboarding({
     super.key,
+    required this.currentPageIndex,
     required this.image,
     required this.backgroundImage,
     required this.title,
-    required this.subTitle,
-    this.subTitleStyle,
-    
-    
-     // ← جديد: عشان تقدر تتحكم في الـ style من بره
+    required this.subtitle,
+    this.showSkip = true,
   });
 
+  final int currentPageIndex; // 0 أو 1
   final String image;
   final String backgroundImage;
   final Widget title;
-  final String subTitle;
-  final TextStyle? subTitleStyle; // اختياري
+  final String subtitle;
+  final bool showSkip;
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
-        // الجزء العلوي: الصور
+        // الصور
         SizedBox(
-          width: double.infinity,
           height: MediaQuery.of(context).size.height * 0.5,
           child: Stack(
             children: [
-              // الخلفية
-              Positioned.fill(
-                child: SvgPicture.asset(backgroundImage, fit: BoxFit.cover),
-              ),
-              // اللوجو أو الصورة الأمامية
+              Positioned.fill(child: SvgPicture.asset(backgroundImage, fit: BoxFit.cover)),
               Align(
                 alignment: Alignment.bottomCenter,
-                child: SvgPicture.asset(
-                  image,
-                  width:
-                      MediaQuery.of(context).size.width *
-                      0.8, // اختياري: تحكم في الحجم
-                ),
+                child: SvgPicture.asset(image, width: MediaQuery.of(context).size.width * 0.8),
               ),
-
-              // زر تخطي في اليمين العلوي (مناسب للغة العربية)
-              const Padding(
-                padding: EdgeInsets.all(24.0),
-                child: Align(
-                  alignment: Alignment.topRight,
-                  child: Text(
-                    'تخطي',
-                    style: TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.w600,
-                      color: Colors.black54,
-
-                    ),
+              if (showSkip)
+                const Padding(
+                  padding: EdgeInsets.all(24),
+                  child: Align(
+                    alignment: Alignment.topRight,
+                    child: Text('تخطي', style: TextStyle(fontSize: 16, color: Colors.black54)),
                   ),
                 ),
-              ),
             ],
           ),
         ),
 
-        const SizedBox(height: 46),
+        const SizedBox(height: 50),
 
-        // العنوان (مثل FruitHUB الملون)
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 32),
-          child: title,
-        ),
+        Padding(padding: const EdgeInsets.symmetric(horizontal: 32), child: title),
 
         const SizedBox(height: 24),
 
-        // النص الفرعي
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 32),
           child: Text(
-            subTitle,
+            subtitle,
             textAlign: TextAlign.center,
-            style:
-                subTitleStyle ??
-                const TextStyle(
-                  fontSize: 14,
-                  fontWeight: FontWeight.w600,
-                  color: Color(0xFF4E5556),
-                  height: 1.7,
-                  fontFamily: 'Cairo',
-                ),
+            style: const TextStyle(
+              fontSize: 14,
+              fontWeight: FontWeight.w600,
+              color: Color(0xFF4E5556),
+              height: 1.7,
+              fontFamily: 'Cairo',
+            ),
           ),
         ),
-        SizedBox(height: MediaQuery.of(context).size.height * 0.1),
 
-        // عشان يدفع الـ content للأعلى ويسيب مساحة تحت للـ dots والزر في الصفحات الجاية
-        // const Spacer(),
+        const Spacer(),
+
+        // النقاط السحرية: 1 في الصفحة الأولى، 2 في الثانية
         DotsIndicator(
-          dotsCount: 2,
-          decorator: DotsDecorator(
-            activeColor: AppColor.primaryColor,
-            color: AppColor.primaryColor.withOpacity(0.5),
-          ),
-        ),
+  dotsCount: 2,
+  position: currentPageIndex.toDouble(),
+  decorator: DotsDecorator(
+    activeColor: const Color(0xFF1B5E37),        // لونك الأخضر
+    color: const Color(0xFF1B5E37).withOpacity(0.3),
+    size: const Size(10, 10),
+    activeSize: const Size(32, 10),
+    activeShape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+    spacing: const EdgeInsets.symmetric(horizontal: 8),
+  ),
+),
+        const SizedBox(height: 80),
       ],
     );
   }
