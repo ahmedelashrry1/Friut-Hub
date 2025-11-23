@@ -8,8 +8,10 @@ class OnBordingScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: SafeArea(child: OnBordingViewBody()),
+    return Scaffold(
+      body: SafeArea(child: const OnBordingViewBody()
+           
+      ),
     );
   }
 }
