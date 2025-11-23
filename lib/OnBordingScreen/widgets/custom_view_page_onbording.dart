@@ -94,9 +94,10 @@ class ViewPageOnBording extends StatelessWidget {
                 ),
           ),
         ),
+        SizedBox(height: MediaQuery.of(context).size.height * 0.1),
 
         // عشان يدفع الـ content للأعلى ويسيب مساحة تحت للـ dots والزر في الصفحات الجاية
-        const Spacer(),
+        // const Spacer(),
         DotsIndicator(
           dotsCount: 2,
           decorator: DotsDecorator(
