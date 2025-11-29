@@ -3,7 +3,6 @@
 import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:project/utils/app%20color.dart';
 
 class ViewPageOnboarding extends StatelessWidget {
   const ViewPageOnboarding({
@@ -78,7 +77,7 @@ class ViewPageOnboarding extends StatelessWidget {
   position: currentPageIndex.toDouble(),
   decorator: DotsDecorator(
     activeColor: const Color(0xFF1B5E37),        // لونك الأخضر
-    color: const Color(0xFF1B5E37).withOpacity(0.3),
+    color: const Color(0xFF1B5E37).withValues(alpha: 0.3),
     size: const Size(10, 10),
     activeSize: const Size(32, 10),
     activeShape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),

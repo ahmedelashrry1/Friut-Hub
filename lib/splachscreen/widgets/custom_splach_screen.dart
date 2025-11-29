@@ -20,7 +20,9 @@ class _SplashViewBodyState extends State<SplashViewBody> {
 
   void excutNavigation() {
     Future.delayed(const Duration(seconds: 6), () {
-      Navigator.pushReplacementNamed(context, OnBordingScreen.routeName );
+      if (mounted) {
+        Navigator.pushReplacementNamed(context, OnBordingScreen.routeName );
+      }
     });
   }
 
